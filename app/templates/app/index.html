@@ -1,0 +1,43 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Главная — MebelHome{% endblock %}
+
+{% block content %}
+<style>
+    .hero-section {
+        background-image: url("{% static 'images/furniture_bg.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 100px 0;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    }
+</style>
+
+<div class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold">MebelHome</h1>
+        <p class="lead mb-4">Уютная и стильная мебель для вашего дома</p>
+        <a href="{% url 'catalog_main' %}" class="btn btn-light btn-lg">Перейти в каталог</a>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Почему выбирают нас</h2>
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <h5>Широкий ассортимент</h5>
+            <p>Мебель для любого интерьера — от классики до минимализма.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <h5>Доступные цены</h5>
+            <p>Прямые поставки от производителей и честные цены.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <h5>Доставка по всей стране</h5>
+            <p>Быстрая и надёжная доставка прямо до вашей двери.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

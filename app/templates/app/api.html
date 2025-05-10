@@ -1,0 +1,30 @@
+{% extends 'app/base.html' %}
+
+{% block title %}API — Магазин мебели{% endblock %}
+
+{% block subnav %}
+    {% include 'inc/api_nav.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Документация API</h1>
+
+    <h5 id="get-list">GET /api/products/</h5>
+    <p>Получить список всех товаров</p>
+
+    <h5 id="get-detail">GET /api/products/&lt;id&gt;/</h5>
+    <p>Получить информацию о конкретном товаре</p>
+
+    <h5 id="post-create">POST /api/products/</h5>
+    <p>Добавить новый товар</p>
+
+    <h5 id="put-update">PUT /api/products/&lt;id&gt;/</h5>
+    <p>Обновить товар по ID</p>
+
+    <h5 id="delete">DELETE /api/products/&lt;id&gt;/</h5>
+    <p>Удалить товар по ID</p>
+
+
+</div>
+{% endblock %}

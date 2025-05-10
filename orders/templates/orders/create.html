@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Оформление заказа{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Оформление заказа</h2>
+  <form id="order-form" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="button" id="submit-btn" class="btn btn-success">Оформить заказ</button>
+  </form>
+  
+</div>
+{% endblock %}
+{% block extra %}
+    <script src="{% static 'js/order_create.js' %}"></script>
+{% endblock %}

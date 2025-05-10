@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">{{ product.name }}</h1>
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <p><strong>Описание:</strong> {{ product.description }}</p>
+            <p><strong>Цена:</strong> {{ product.price }} руб.</p>
+            <p><strong>Категория:</strong> {{ product.category.name }}</p>
+            <p><strong>Теги:</strong>
+                {% for tag in product.tags.all %}
+                    <a href="{% url 'products_by_tag' tag.id %}" class="badge bg-secondary">{{ tag.name }}</a>
+                {% empty %}
+                    <span class="text-muted">Нет тегов</span>
+                {% endfor %}
+            </p>
+            {% if product.image %}
+                <img src="{{ product.image.url }}" class="img-fluid mt-3" alt="{{ product.name }}">
+            {% else %}
+                <p class="text-muted"><em>Изображение отсутствует</em></p>
+            {% endif %}
+        </div>
+    </div>
+
+    <a href="{% url 'catalog_main' %}" class="btn btn-secondary">Назад</a>
+</div>
+{% endblock %}

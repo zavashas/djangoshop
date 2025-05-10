@@ -1,0 +1,21 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Товары с тегом: {{ tag.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Товары с тегом: {{ tag.name }}</h1>
+
+    {% if products %}
+        <div class="row">
+            {% for product in products %}
+                {% include 'inc/_product_card.html' with product=product %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning">Нет товаров с этим тегом.</div>
+    {% endif %}
+
+    <a href="{% url 'catalog_main' %}" class="btn btn-secondary mt-3">Назад к каталогу</a>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+<nav class="bg-white  py-2">
+    <div class="container d-flex flex-wrap gap-2">
+        <a href="{% url 'catalog_main' %}" class="btn btn-sm btn-outline-secondary">Каталог</a>
+        {% if user.is_authenticated and user.is_staff %}
+        <a href="{% url 'catalog_add' %}" class="btn btn-sm btn-outline-success">Добавить товар</a>
+        {% endif %}
+        <a href="{% url 'category_list' %}" class="btn btn-sm btn-outline-secondary">Категории</a>
+        <a href="{% url 'tag_list' %}" class="btn btn-sm btn-outline-secondary">Теги</a>
+    </div>
+</nav>

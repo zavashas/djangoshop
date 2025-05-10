@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Каталог магазина{% endblock %}
+
+{% block subnav %}
+    {% include 'inc/catalog_nav.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Каталог магазина</h1>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4>Товары</h4>
+        {% if user.is_authenticated and user.is_staff %}
+            <a href="{% url 'catalog_add' %}" class="btn btn-success">Добавить товар</a>
+            {% endif %}
+    </div>
+
+    <div class="row">
+        {% for product in products %}
+            {% include 'inc/_product_card.html' %}
+        {% empty %}
+            <div class="col-12">
+                <div class="alert alert-warning">Товаров пока нет.</div>
+            </div>
+        {% endfor %}
+    </div>
+    
+</div>
+{% endblock %}

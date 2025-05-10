@@ -1,0 +1,59 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Ваша корзина</h2>
+
+    {% if cart %}
+        <form id="csrf-form" style="display: none;">
+            {% csrf_token %}
+        </form>
+
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th>Цена</th>
+                    <th>Количество</th>
+                    <th>Всего</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                <tr data-product-id="{{ item.product.id }}">
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.price }} руб.</td>
+                    <td style="width: 160px;">
+                        <div class="input-group input-group-sm">
+                            <button class="btn btn-outline-secondary btn-qty-minus" type="button">−</button>
+                            <input type="text" class="form-control text-center qty-input" value="{{ item.quantity }}" readonly>
+                            <button class="btn btn-outline-secondary btn-qty-plus" type="button">+</button>
+                        </div>
+                    </td>
+                    <td class="item-total">{{ item.total_price }} руб.</td>
+                    <td>
+                        <a href="{% url 'cart_remove' item.product.id %}" class="btn btn-danger btn-sm">Удалить</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3" class="text-end"><strong>Итого:</strong></td>
+                    <td colspan="2"><strong id="cart-total">{{ cart.get_total_price }} руб.</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="{% url 'order_create' %}" class="btn btn-success">Оформить заказ</a>
+        {% else %}
+            <div>Корзина пуста</div>
+            <button class="btn btn-success" disabled>Оформить заказ</button>
+        {% endif %}
+
+</div>
+{% endblock %}
+
+{% block extra %}
+    <script src="{% static 'js/cart.js' %}"></script>
+{% endblock %}
